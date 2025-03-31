@@ -13,7 +13,8 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather, MaterialIcons, Ionicons, FontAwesome } from '@expo/vector-icons';
-import Header from './header';
+import Header from '../header';
+import Layout from '../../layout';
 
 type Professional = {
   id: string;
@@ -94,20 +95,8 @@ export default function HomeScreen() {
   const navigation = useNavigation();
 
   return (
+    <Layout>
     <SafeAreaView style={styles.container}>
-      <StatusBar/>
-      
-      {/* Reusable Header */}
-      <Header 
-        rightIcon={
-          <TouchableOpacity 
-            style={styles.profileButton}
-            onPress={() => navigation.navigate('Details')}
-          >
-            <Ionicons name="notifications-outline" size={24} color="#4A78EF" />
-          </TouchableOpacity>
-        }
-      />
       
       {/* Search Bar */}
       <View style={styles.searchContainer}>
@@ -224,6 +213,7 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
+    </Layout>
   );
 }
 
