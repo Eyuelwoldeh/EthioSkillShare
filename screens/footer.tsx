@@ -14,6 +14,10 @@ const Footer = () => {
         navigation.navigate('Inbox');
     };
 
+    const handleProfilePress = () => {
+      navigation.navigate('Details');
+  };
+
   return (
     <View style={styles.footer}>
       <TouchableOpacity style={styles.footerButton}>
@@ -26,7 +30,7 @@ const Footer = () => {
         <Ionicons name="mail-outline" size={24} color="#666" onPress={handleMessagePress} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.footerButton}>
-        <Ionicons name="person" size={24} color="#666" />
+        <Ionicons name="person" size={24} color="#666" onPress={handleProfilePress} />
       </TouchableOpacity>
     </View>
   );

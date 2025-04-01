@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './screens/pages/home';
-import DetailsScreen from './screens/details';
+import DetailsScreen from './screens/pages/profile/details';
 import MessageScreen from './screens/pages/messages';
 
 export default function App() {

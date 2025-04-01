@@ -29,24 +29,6 @@ const Header = ({
           </TouchableOpacity>
         )}
       </View>
-
-      {/* Center Section (Title) */}
-      <View style={styles.centerSection}>
-        <Text style={styles.headerTitle}>{title}</Text>
-        <View style={styles.headerTagline}>
-          <Ionicons name="flash" size={14} color="#FFD700" />
-          <Text style={styles.headerSubtitle}> {subtitle}</Text>
-        </View>
-      </View>
-
-      {/* Right Section (Profile/Other Icons) */}
-      <View style={styles.rightSection}>
-        {rightIcon || (
-          <TouchableOpacity style={styles.profileButton}>
-            <Ionicons name="person-circle-outline" size={24} color="#4A78EF" />
-          </TouchableOpacity>
-        )}
-      </View>
     </View>
   );
 };
