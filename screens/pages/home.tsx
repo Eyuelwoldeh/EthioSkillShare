@@ -67,7 +67,7 @@ const ProCard = ({ pro }: { pro: Professional }) => {
   return (
     <TouchableOpacity 
       style={styles.proCard}
-      onPress={() => navigation.navigate('Details')}
+      onPress={() => navigation.navigate('Details' as never)}
     >
       <Image source={{ uri: pro.image }} style={styles.proImage} />
       <View style={styles.proInfo}>
@@ -152,7 +152,7 @@ export default function HomeScreen() {
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>Top Professionals</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('AllPros')}>
+            <TouchableOpacity onPress={() => navigation.navigate('AllPros' as never)}>
               <Text style={styles.seeAllText}>See All</Text>
             </TouchableOpacity>
           </View>
@@ -195,7 +195,7 @@ export default function HomeScreen() {
         {/* CTA Banner */}
         <TouchableOpacity 
           style={styles.ctaBanner}
-          onPress={() => navigation.navigate('PostRequest')}
+          onPress={() => navigation.navigate('PostRequest' as never)}
         >
           <View style={styles.ctaContent}>
             <Text style={styles.ctaTitle}>Need something done?</Text>

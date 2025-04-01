@@ -98,7 +98,7 @@ const MessageCard = ({ message }: { message: Message }) => {
   return (
     <TouchableOpacity 
       style={styles.messageCard}
-      onPress={() => navigation.navigate('ChatDetail')}
+      onPress={() => navigation.navigate('ChatDetail' as never)}
     >
       <View style={styles.avatarContainer}>
         <Image source={{ uri: message.sender.image }} style={styles.avatar} />

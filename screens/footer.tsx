@@ -11,11 +11,11 @@ const Footer = () => {
     const navigation = useNavigation();
 
     const handleMessagePress = () => {
-        navigation.navigate('Inbox');
+        navigation.navigate('Inbox' as never);
     };
 
     const handleProfilePress = () => {
-      navigation.navigate('Details');
+      navigation.navigate('Details' as never);
   };
 
   return (

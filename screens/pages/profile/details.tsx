@@ -34,7 +34,7 @@ export default function DetailsScreen() {
           <TouchableOpacity 
             key={index}
             style={styles.menuItem}
-            onPress={() => item.screen ? navigation.navigate(item.screen) : item.action?.()}
+            onPress={() => item.screen ? navigation.navigate(item.screen as never) : item.action?.()}
           >
             <View style={styles.menuLeft}>
               <Ionicons name={item.icon} size={22} color="#555" />
