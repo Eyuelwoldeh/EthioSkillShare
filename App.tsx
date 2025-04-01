@@ -2,9 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import HomeScreen from './screens/pages/home';
-import DetailsScreen from './screens/pages/profile/details';
-import MessageScreen from './screens/pages/messages';
+import HomeScreen from './src/customers/pages/home';
+import DetailsScreen from './src/customers/pages/profile/details';
+import MessageScreen from './src/customers/pages/messages/messages';
 
 export default function App() {
 

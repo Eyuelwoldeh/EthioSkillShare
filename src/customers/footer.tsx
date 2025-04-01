@@ -2,7 +2,7 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import MessageScreen from './pages/messages';
+import MessageScreen from './pages/messages/messages';
 import { useNavigation } from '@react-navigation/native';
 
 

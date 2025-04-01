@@ -1,8 +1,8 @@
 // components/Layout.tsx
 import React from 'react';
 import { View } from 'react-native';
-import Footer from './screens/footer';
-import Header from './screens/header';
+import Footer from './src/customers/footer';
+import Header from './src/customers/header';
 
 const Layout = ({ children }) => {
   return (

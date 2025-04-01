@@ -14,7 +14,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { Feather, MaterialIcons, Ionicons, FontAwesome } from '@expo/vector-icons';
 import Header from '../header';
-import Layout from '../../layout';
+import Layout from '../../../layout';
 
 type Professional = {
   id: string;

@@ -37,7 +37,7 @@ export default function DetailsScreen() {
             onPress={() => item.screen ? navigation.navigate(item.screen as never) : item.action?.()}
           >
             <View style={styles.menuLeft}>
-              <Ionicons name={item.icon} size={22} color="#555" />
+              <Ionicons name={item.icon as never} size={22} color="#555" />
               <Text style={styles.menuText}>{item.title}</Text>
             </View>
             <Ionicons name="chevron-forward" size={20} color="#999" />
