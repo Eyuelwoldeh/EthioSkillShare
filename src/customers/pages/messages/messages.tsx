@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather, MaterialIcons, Ionicons, FontAwesome } from '@expo/vector-icons';
-import Layout from '../../../layout';
+import Layout from '../../../../layout';
 
 type Message = {
   id: string;

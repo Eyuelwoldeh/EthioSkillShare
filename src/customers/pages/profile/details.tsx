@@ -3,10 +3,26 @@ import { StyleSheet, Text, View, Button, TouchableOpacity, ScrollView } from 're
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import { supabase } from '../../../../lib/supabase';
 
 export default function DetailsScreen() {
 
   const navigation = useNavigation();
+
+  async function signOut() {
+    try {
+
+    const { error } = await supabase.auth.signOut();
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Login' as never }]
+    });
+
+    } catch (error) {
+
+      alert(error);
+    }
+  }
 
   const menuItems = [
     { title: 'Account', icon: 'person', screen: 'Account' },
@@ -16,7 +32,7 @@ export default function DetailsScreen() {
     { title: 'Terms of Use', icon: 'document-text', screen: 'Terms' },
     { title: 'Acknowledgements', icon: 'thumbs-up', screen: 'Acknowledgements' },
     { title: 'Report a Technical Problem', icon: 'bug', screen: 'ReportProblem' },
-    { title: 'Logout', icon: 'log-out', action: () => console.log('Logging out...') },
+    { title: 'Logout', icon: 'log-out', action: () => signOut() },
   ];
 
   return (
