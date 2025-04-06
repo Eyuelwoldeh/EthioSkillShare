@@ -1,7 +1,7 @@
 import { View, TextInput, Button } from 'react-native';
 import { useState } from 'react';
 
-export default function ProfileScreen() {
+export default function ProProfileScreen() {
   const [profile, setProfile] = useState({
     businessName: '',
     hourlyRate: ''

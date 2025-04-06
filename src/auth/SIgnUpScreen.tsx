@@ -76,6 +76,21 @@ export default function SignUpScreen() {
           });
   
         if (profileError) throw profileError;
+      
+        if (accountType === 'professional') {
+          const { error: proError } = await supabase
+            .from('professional_profiles')
+            .insert({
+              user_id: user.id,
+              headline: `${fullName}'s Services`, // Default value
+              hourly_rate: 0, // Initialize with 0
+              introduction: 'Tell clients about your services...'
+            });
+
+            navigation.navigate('ProfessionalOnboarding' as never);
+      
+          if (proError) throw proError;
+        }
   
         Alert.alert(
           'Confirm Your Email',
@@ -84,7 +99,7 @@ export default function SignUpScreen() {
         );
       }
     } catch (error) {
-      Alert.alert('Sign Up Failed', error.message);
+      Alert.alert(error as never);
     } finally {
       setLoading(false);
     }
