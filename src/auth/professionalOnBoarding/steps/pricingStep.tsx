@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, TextInput, Switch, Button, ActivityIndicator, ScrollView } from 'react-native';
-import { supabase } from '../../../lib/supabase';
+import { supabase } from '../../../../lib/supabase';
 import Slider from '@react-native-community/slider';
 
 export default function PricingStep({ userId, profile, onComplete, isLoading }) {

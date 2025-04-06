@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import { supabase } from '../../../../lib/supabase';
 
-export default function BasicInfoStep({ userId, profile, onComplete, isLoading }) {
+export default function BasicInfoStep({ userId: string, profile, onComplete, isLoading }) {
   const [headline, setHeadline] = useState('');
   const [bio, setBio] = useState('');
   const [error, setError] = useState(null);

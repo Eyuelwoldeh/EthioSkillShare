@@ -62,6 +62,10 @@ export default function SignUpScreen() {
       });
   
       if (authError) throw authError;
+
+      if (!user) {
+        throw new Error('User creation failed');
+      }
       
       // 2. Create profile in your 'profiles' table
       if (user) {
@@ -80,14 +84,14 @@ export default function SignUpScreen() {
         if (accountType === 'professional') {
           const { error: proError } = await supabase
             .from('professional_profiles')
-            .insert({
+            .upsert({
               user_id: user.id,
               headline: `${fullName}'s Services`, // Default value
               hourly_rate: 0, // Initialize with 0
               introduction: 'Tell clients about your services...'
             });
 
-            navigation.navigate('ProfessionalOnboarding' as never);
+            navigation.navigate('ProfessionalOnboarding', { userId: user.id });
       
           if (proError) throw proError;
         }
@@ -99,7 +103,8 @@ export default function SignUpScreen() {
         );
       }
     } catch (error) {
-      Alert.alert(error as never);
+      Alert.alert(error.message);
+      console.log(error)
     } finally {
       setLoading(false);
     }
