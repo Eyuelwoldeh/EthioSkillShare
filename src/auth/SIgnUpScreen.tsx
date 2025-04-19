@@ -48,63 +48,78 @@ export default function SignUpScreen() {
   
     setLoading(true);
     try {
-      // 1. Sign up with Supabase Auth
-      const { data: { user }, error: authError } = await supabase.auth.signUp({
+      // Step 1: First confirm database connection
+      const { data: connTest, error: connError } = await supabase
+        .from('user_profiles')
+        .select('count')
+        .limit(1);
+        
+      if (connError) {
+        console.log("Connection test failed:", connError);
+        throw new Error("Database connection error. Please try again later.");
+      }
+      
+      console.log("Database connection successful");
+      
+      // Step 2: Sign up with Supabase Auth
+      const { data, error: authError } = await supabase.auth.signUp({
         email,
-        password,
-        options: {
-          data: { // This adds metadata to auth.user
-            account_type: accountType,
-            full_name: fullName,
-            phone: phone
-          }
-        }
+        password
       });
-  
-      if (authError) throw authError;
 
-      if (!user) {
-        throw new Error('User creation failed');
+      if (authError) {
+        console.log("Auth error:", authError);
+        throw authError;
+      }
+
+      if (!data?.user?.id) {
+        throw new Error('User creation failed - no user ID returned');
       }
       
-      // 2. Create profile in your 'profiles' table
-      if (user) {
-        const { error: profileError } = await supabase
-          .from('profiles')
+      const userId = data.user.id;
+      console.log("User created with ID:", userId);
+      
+      // Step 3: Create user profile
+      const { error: profileError } = await supabase
+        .from('user_profiles')
+        .insert({
+          id: userId,
+          account_type: accountType,
+          email: email,
+          full_name: fullName,
+          phone: phone
+        });
+
+      if (profileError) {
+        console.log("Profile creation error:", profileError);
+        throw profileError;
+      }
+      
+      console.log("User profile created successfully");
+      
+      // Step 4: Create professional profile if needed
+      if (accountType === 'professional') {
+        console.log("Inside if function");
+        const { error: proError } = await supabase
+          .from('professional_profiles')
           .insert({
-            id: user.id, // Critical! Use the auth-generated ID
-            account_type: accountType,
-            email: email,
-            full_name: fullName,
-            phone: phone
+            user_id: userId,
+            headline: `${fullName}'s Services`,
+            bio: 'Tell clients about your services...'
           });
-  
-        if (profileError) throw profileError;
-      
-        if (accountType === 'professional') {
-          const { error: proError } = await supabase
-            .from('professional_profiles')
-            .upsert({
-              user_id: user.id,
-              headline: `${fullName}'s Services`, // Default value
-              hourly_rate: 0, // Initialize with 0
-              introduction: 'Tell clients about your services...'
-            });
 
-            navigation.navigate('ProfessionalOnboarding', { userId: user.id });
-      
-          if (proError) throw proError;
+        if (proError) {
+          console.log("Professional profile error:", proError);
+          throw proError;
         }
-  
-        Alert.alert(
-          'Confirm Your Email',
-          'Check your inbox for a confirmation link',
-          [{ text: 'OK', onPress: () => navigation.navigate('Login' as never) }]
-        );
+        
+        console.log("Professional profile created successfully");
+        navigation.navigate('ProfessionalOnboarding', { userId: userId });
       }
+
     } catch (error) {
-      Alert.alert(error.message);
-      console.log(error)
+      console.log("Full error:", error);
+      Alert.alert("Sign Up Failed", error.message || "An unknown error occurred");
     } finally {
       setLoading(false);
     }

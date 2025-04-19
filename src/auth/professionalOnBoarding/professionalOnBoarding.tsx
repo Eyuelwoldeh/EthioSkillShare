@@ -73,7 +73,7 @@ export default function ProfessionalOnboarding({ route }) {
           .update({ onboarding_complete: true })
           .eq('user_id', userId);
           
-        navigation.navigate('ProfessionalDashboard' as never);
+        navigation.navigate('ProDetails' as never);
       }
     } catch (error) {
       console.error('Error updating step:', error);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Text, ScrollView, TouchableOpacity, Button, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, Text, ScrollView, TouchableOpacity, Button, ActivityIndicator, TextInput } from 'react-native';
 import { supabase } from '../../../../lib/supabase';
 
 export default function ServicesStep({ userId, profile, onComplete, isLoading }) {
