@@ -8,7 +8,9 @@ import MessageScreen from './src/customers/pages/messages/messages';
 import LoginScreen from './src/auth/LoginScreen';
 import SignUpScreen from './src/auth/SIgnUpScreen';
 import ProProfileScreen from './src/professionals/pages/profile/details';
+import ProfessionalProfileDetails from './src/professionals/pages/profile/details';
 import ProfessionalOnboarding from './src/auth/professionalOnBoarding/professionalOnBoarding';
+import LeadsScreen from './src/professionals/pages/leads/leads';
 
 export default function App() {
 
@@ -23,8 +25,9 @@ export default function App() {
             <Stack.Screen name="Inbox" component={MessageScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="SignUp" component={SignUpScreen} />
-            <Stack.Screen name="ProDetails" component={ProProfileScreen} />
+            <Stack.Screen name="ProDetails" component={ProfessionalProfileDetails} />
             <Stack.Screen name="ProfessionalOnboarding" component={ProfessionalOnboarding} />
+            <Stack.Screen name="Leads" component={LeadsScreen} />
           </Stack.Navigator>
         </NavigationContainer>
   );

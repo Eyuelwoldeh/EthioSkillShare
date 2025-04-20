@@ -67,6 +67,8 @@ export default function ProfessionalOnboarding({ route }) {
       if (currentStep < steps.length - 1) {
         setCurrentStep(currentStep + 1);
       } else {
+
+        console.log("This part has worked");
         // Mark onboarding as complete and navigate to dashboard
         await supabase
           .from('professional_profiles')

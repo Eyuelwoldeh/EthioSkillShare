@@ -16,8 +16,10 @@ import Animated, {
   FadeInDown,
   FadeInUp 
 } from 'react-native-reanimated';
+import { useAuth } from '../../hooks/useAuth';
 
 export default function LoginScreen() {
+  const { user } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -53,7 +55,18 @@ export default function LoginScreen() {
         alert(error.message);
       } else {
         console.log("Logged in");
-        navigation.replace('Home');
+        const { data: userData, error: userError } = await supabase
+                  .from('user_profiles')
+                  .select('id, full_name, account_type')
+                  .eq('id', user.id)
+                  .single();
+        if (!userData) return;
+        if (userData.account_type=="professional"){
+          navigation.navigate("ProDetails")
+        }
+        else{
+          navigation.replace('Home');
+        }
       }
     } finally {
       setLoading(false);
