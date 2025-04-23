@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderColor: '#e0e0e0',
     backgroundColor: '#fff',
-    elevation: 10,
+    elevation: 20,
+    paddingBottom: 40,
   },
   button: {
     alignItems: 'center',

@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -9,10 +9,22 @@ export default function DetailsScreen() {
 
   const navigation = useNavigation();
 
+  async function alertMSG() {
+  Alert.alert(
+    'LogOut',
+    'Are you sure you want to logout of your account?',
+    [
+      {text: 'No'},
+      {text: 'Yes', onPress: () => signOut()}
+    ],
+    {cancelable: true},
+  );
+}
+
   async function signOut() {
     try {
 
-    const { error } = await supabase.auth.signOut();
+      const { error } = await supabase.auth.signOut();
     navigation.reset({
       index: 0,
       routes: [{ name: 'Login' as never }]
@@ -32,7 +44,7 @@ export default function DetailsScreen() {
     { title: 'Terms of Use', icon: 'document-text', screen: 'Terms' },
     { title: 'Acknowledgements', icon: 'thumbs-up', screen: 'Acknowledgements' },
     { title: 'Report a Technical Problem', icon: 'bug', screen: 'ReportProblem' },
-    { title: 'Logout', icon: 'log-out', action: () => signOut() },
+    { title: 'Logout', icon: 'log-out', action: () => alertMSG() },
   ];
 
   return (

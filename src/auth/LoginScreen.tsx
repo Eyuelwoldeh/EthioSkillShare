@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { supabase } from '../../lib/supabase';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationAction,  } from '@react-navigation/native';
 import Animated, { 
   FadeInDown,
   FadeInUp 
@@ -62,10 +62,16 @@ export default function LoginScreen() {
                   .single();
         if (!userData) return;
         if (userData.account_type=="professional"){
-          navigation.navigate("ProDetails")
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'ProDetails' }],
+          });
         }
         else{
-          navigation.replace('Home');
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'Home' }],
+          });
         }
       }
     } finally {

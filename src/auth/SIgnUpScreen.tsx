@@ -116,6 +116,9 @@ export default function SignUpScreen() {
         console.log("Professional profile created successfully");
         navigation.navigate('ProfessionalOnboarding', { userId: userId });
       }
+      else{
+        navigation.navigate('Home');
+      }
 
     } catch (error) {
       console.log("Full error:", error);
